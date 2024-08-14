@@ -6,24 +6,23 @@ function adicionar() {
     // Obtém o valor do campo de entrada com o id 'nome-amigo'
     let amigo = document.getElementById('nome-amigo');
 
-    if (amigo.value == '') { 
+    // **Alteração: Convertendo o valor para maiúsculas**
+    let nomeMaiusculo = amigo.value.trim().toUpperCase();
+
+    if (nomeMaiusculo == '') { 
         atualizarMensagemAmigo("Informe o nome do amigo.", "erro"); 
         amigo.value = ""; 
         return; 
     }
 
-    if (amigos.includes(amigo.value)) { 
+    if (amigos.includes(nomeMaiusculo)) { 
         atualizarMensagemAmigo("Amigo já adicionado!", "erro"); 
         amigo.value = "";
         return; 
     }
 
-    //if(amigo.value == ''){
-      //  alert('Informe o nome do amigo');
-        //return;
-    //}
     // Adiciona o valor do campo ao array 'amigos'
-    amigos.push(amigo.value);
+    amigos.push(nomeMaiusculo);
     // Limpa o campo de entrada
     amigo.value = "";
     // Atualiza a lista de amigos na tela
