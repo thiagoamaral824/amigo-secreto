@@ -5,12 +5,30 @@ let amigos = [];
 function adicionar() {
     // Obtém o valor do campo de entrada com o id 'nome-amigo'
     let amigo = document.getElementById('nome-amigo');
+
+    if (amigo.value == '') { 
+        atualizarMensagemAmigo("Informe o nome do amigo.", "erro"); 
+        amigo.value = ""; 
+        return; 
+    }
+
+    if (amigos.includes(amigo.value)) { 
+        atualizarMensagemAmigo("Amigo já adicionado!", "erro"); 
+        amigo.value = "";
+        return; 
+    }
+
+    //if(amigo.value == ''){
+      //  alert('Informe o nome do amigo');
+        //return;
+    //}
     // Adiciona o valor do campo ao array 'amigos'
     amigos.push(amigo.value);
     // Limpa o campo de entrada
     amigo.value = "";
     // Atualiza a lista de amigos na tela
     atualizarLista();
+    atualizarMensagemAmigo("Amigo adicionado.", "sucesso"); 
     // Atualiza o sorteio na tela
     atualizarSorteio();
 }
@@ -55,6 +73,11 @@ function excluirAmigo(index) {
 
 // Função para sortear e exibir a lista de amigos
 function sortear() {
+    if(amigos.length < 4){
+        atualizarMensagemAmigo("Adicione pelo menos 4 amigos.", "erro");
+        return;
+    }
+
     // Embaralha a lista de amigos
     embaralhar(amigos);
 
@@ -100,4 +123,22 @@ function reiniciar() {
     // Limpa o conteúdo dos elementos da lista de amigos e lista de sorteio
     document.getElementById('lista-amigos').innerHTML = '';
     document.getElementById('lista-sorteio').innerHTML = '';
+    atualizarMensagemAmigo("mensagem-amigo").innerHTML = "";
+    return;
+}
+
+function atualizarMensagemAmigo(mensagem, tipo) { let mensagemAmigoDiv = document.getElementById("mensagem-amigo"); 
+    // Limpa as classes anteriores 
+    mensagemAmigoDiv.className = "mensagem-amigo"; 
+    // Adiciona a classe conforme o tipo de mensagem 
+    if (tipo === "sucesso") { 
+        mensagemAmigoDiv.classList.add("sucesso"); 
+    } 
+    else if (tipo === "erro") { 
+        mensagemAmigoDiv.classList.add("erro"); 
+    } 
+    // Atualiza o texto da mensagem 
+    mensagemAmigoDiv.textContent = mensagem; 
+    // Exibe a mensagem adicionando a classe 'mostrar' 
+    mensagemAmigoDiv.classList.add("mostrar"); 
 }

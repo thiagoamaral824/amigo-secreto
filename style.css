@@ -142,7 +142,7 @@ body {
   color: #fff;
   cursor: pointer;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 700;
   line-height: 110%;
   text-align: center;
   text-decoration: none; /* Remove o sublinhado */
@@ -212,4 +212,34 @@ body {
 .secondary {
   background-color: #fff;
   color: #1875e8;
+}
+
+.mensagem-amigo {
+  margin-top: 20px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 700;
+  font-size: 1.5rem;
+  padding: 15px;
+  border-radius: 5px;
+  text-align: center;
+  display: none; /* Inicialmente oculta */
+}
+
+/* Mensagem de sucesso */
+.mensagem-amigo.sucesso {
+  background-color: #00fa3a;
+  color: #000000;
+  border: 1px solid #00fa3a;
+}
+
+/* Mensagem de erro */
+.mensagem-amigo.erro {
+  background-color: #f7061e;
+  color: #000000;
+  border: 1px solid #f7061e;
+}
+
+/* Mostrar a mensagem quando a classe 'mostrar' for adicionada */
+.mensagem-amigo.mostrar {
+  display: block;
 }
